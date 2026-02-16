@@ -1,8 +1,86 @@
-<html>
-	<head>
-		<title>Finest Mechanical</title>
-	</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finest Mechanical coming soon</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000000; /* Black background */
+            color: #FFA500; /* Orange text */
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+        }
+
+        /* Logo styling */
+        .logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #333;
+            animation: flicker 2s infinite;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #FFA500;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .email {
+            margin-top: 15px;
+            font-size: 1rem;
+        }
+
+        /* Optional subtle animation */
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+    </style>
+</head>
 <body>
-	<h2>Finest Mechanical</h2> 
-	<h3>Site under construction...!!!!</h3>
-</body>	
+    <div class="container">
+        <!-- Logo -->
+        <img src="logo.jpg" alt="Company Logo" class="logo" style="width:400px; height:auto;">
+
+        <h1>🚧 Under Construction 🚧</h1>
+        <p>Our website is currently being built.</p>
+        <p>We’ll be live soon. Stay tuned!</p>
+        <div class="email">
+            Contact us: <a href="mailto:info@finestmechanical.com">info@finestmechanical.com</a>
+        </div>
+    </div>
+</body>
+</html>
+
