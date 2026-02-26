@@ -80,11 +80,10 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             
             // Get form values
-            const formData = new FormData(this);
-            const name = this.querySelector('input[type="text"]').value;
-            const email = this.querySelector('input[type="email"]').value;
-            const phone = this.querySelector('input[type="tel"]').value;
-            const message = this.querySelector('textarea').value;
+            const name = this.querySelector('input[name="name"]').value.trim();
+            const email = this.querySelector('input[name="email"]').value.trim();
+            const phone = this.querySelector('input[name="phone"]').value.trim();
+            const message = this.querySelector('textarea[name="message"]').value.trim();
 
             // Simple validation
             if (!name || !email || !message) {
@@ -99,9 +98,45 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Simulate form submission (replace with actual form handling)
-            alert('Thank you for your message! We will get back to you soon.');
-            this.reset();
+            // Get form action URL and method
+            const formAction = this.getAttribute('action');
+            const formMethod = this.getAttribute('method') || 'POST';
+            const formEnctype = this.getAttribute('enctype') || 'application/x-www-form-urlencoded';
+
+            // Create FormData object
+            const formData = new FormData(this);
+
+            // Show loading state
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+
+            // Submit form to action URL
+            fetch(formAction, {
+                method: formMethod,
+                body: formData,
+                headers: formEnctype === 'multipart/form-data' ? {} : {
+                    'Content-Type': formEnctype
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Thank you for your message! We will get back to you soon.');
+                    this.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error sending your message. Please try again or contact us directly.');
+            })
+            .finally(() => {
+                // Restore button state
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            });
         });
     }
 
